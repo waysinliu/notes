@@ -1,0 +1,37 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [{
+    "port": 443,
+    "protocol": "vless",
+    "settings": {
+      "clients": [{
+        "id": "4f80fb9c-48ab-11ed-9cb4-00155d81901c",
+        "flow": "xtls-rprx-direct",
+        "level": 0,
+        "email": "waysin.liu@gmail.com"
+      }],
+      "decryption": "none",
+      "fallbacks": [{
+        "dest": "nginx:8080"
+      }]
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "security": "xtls",
+      "xtlsSettings": {
+        "alpn": [
+          "http/1.1"
+        ],
+        "certificates": [{
+          "certificateFile": "/etc/xray/cert/cert.crt",
+          "keyFile": "/etc/xray/cert/cert.key"
+        }]
+      }
+    }
+  }],
+  "outbounds": [{
+    "protocol": "freedom"
+  }]
+}
